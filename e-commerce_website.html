@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QSTORE</title>
+    <!-- Latest Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .similar-product {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .similar-product:hover {
+            transform: scale(1.05);
+        }
+
+        .similar-product img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Marquee-like effect using CSS */
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0%   { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Flexbox Slider */
+        .slider-container {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider img {
+            width: 100%;
+            flex: 1 0 100%;
+            object-fit: cover;
+            filter: brightness(1.1);
+        }
+
+        .slider img:hover {
+            filter: brightness(1.5);
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .slider-button.prev {
+            left: 10px;
+        }
+
+        .slider-button.next {
+            right: 10px;
+        }
+
+        /* Search Bar with Button */
+        #searchContainer {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Add space between elements */
+        }
+
+        #searchContainer .btn-search {
+            background-color: #007bff;
+            color: white;
+            border-radius: 0;
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-left: 20px; /* Increase space between the search bar and the cart icon */
+        }
+
+        .cart-icon .badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Marquee Text -->
+    <div class="bg-info text-white py-2">
+        <div class="container marquee">
+            <span>Check out our new arrivals! Get up to 50% off on selected items! Limited time offer!</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-dark text-white p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="h4">QSTORE</h1>
+            <nav class="d-flex">
+                <a href="#" class="text-white mx-2">Home</a>
+                <a href="#" class="text-white mx-2">Shop</a>
+                <div id="searchContainer">
+                    <input type="text" id="searchBar" class="form-control" placeholder="Search for products...">
+                    <button class="btn btn-search"><i class="bi bi-search"></i></button>
+                </div>
+                <a href="#" class="text-white mx-2 cart-icon">
+                    <i class="bi bi-cart"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Flexbox Slider -->
+    <div class="container mt-4">
+        <div class="slider-container">
+            <div class="slider">
+                <div><img src="https://ae-pic-a1.aliexpress-media.com/kf/Sb0baad9ceb24465594172e199ab85097B.jpg_80x80.jpg" alt="Slide 1"></div>
+                <div><img src="https://ae-pic-a1.aliexpress-media.com/kf/S4537d306e29d435a906eb6342bba4eeeb.jpg_80x80.jpg" alt="Slide 2"></div>
+                <div><img src="https://ae-pic-a1.aliexpress-media.com/kf/S484bd97c53514a98aa5f8520a04b965fQ.jpg_80x80.jpg" alt="Slide 3"></div>
+				<div><img src="https://ae-pic-a1.aliexpress-media.com/kf/S4537d306e29d435a906eb6342bba4eeeb.jpg_80x80.jpg" alt="Slide 2"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Left Widget Menu -->
+            <aside class="col-md-3">
+                <div class="list-group">
+                    <a href="#shoeDropdown" class="list-group-item list-group-item-action" data-bs-toggle="collapse">
+                        Shoes
+                    </a>
+                    <div class="collapse" id="shoeDropdown">
+                        <a href="#" class="list-group-item list-group-item-action">Kids Shoes</a>
+                        <a href="#" class="list-group-item list-group-item-action">Men's Shoes</a>
+                        <a href="#" class="list-group-item list-group-item-action">Women's Shoes</a>
+                    </div>
+                    <a href="#shirtDropdown" class="list-group-item list-group-item-action" data-bs-toggle="collapse">
+                        Shirts
+                    </a>
+                    <div class="collapse" id="shirtDropdown">
+                        <a href="#" class="list-group-item list-group-item-action">Kids Shirts</a>
+                        <a href="#" class="list-group-item list-group-item-action">Men's Shirts</a>
+                        <a href="#" class="list-group-item list-group-item-action">Women's Shirts</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Latest Products -->
+            <main class="col-md-9">
+                <div class="row" id="productList">
+                    <!-- Product Card -->
+                    <div class="col-md-4 mb-4 product">
+                        <div class="card">
+                            <img src="https://ae-pic-a1.aliexpress-media.com/kf/S4537d306e29d435a906eb6342bba4eeeb.jpg_80x80.jpg" class="card-img-top" alt="Product 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Women Sports Shoes</h5>
+                                <p class="card-text">$100</p>
+                                <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add five more similar product cards here -->
+                </div>
+
+                <!-- Similar Products Section -->
+                <div class="container my-5">
+                    <h3 class="mb-4">Latest Products</h3>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card similar-product">
+                                <img src="https://ae-pic-a1.aliexpress-media.com/kf/S4537d306e29d435a906eb6342bba4eeeb.jpg_80x80.jpg" class="card-img-top" alt="Similar Product 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Product Name 1</h5>
+                                    <p class="card-text">$50</p>
+                                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card similar-product">
+                                <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sb0baad9ceb24465594172e199ab85097B.jpg_80x80.jpg" class="card-img-top" alt="Similar Product 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Product Name 2</h5>
+                                    <p class="card-text">$60</p>
+                                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card similar-product">
+                                <img src="https://ae-pic-a1.aliexpress-media.com/kf/S373d003f7b9247d0aa6462bf7aaad3d1Y.jpg_80x80.jpg" class="card-img-top" alt="Similar Product 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Product Name 3</h5>
+                                    <p class="card-text">$70</p>
+                                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card similar-product">
+                                <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sc0392502fc6148bba6a255e130070c24o.jpg_80x80.jpg" class="card-img-top" alt="Similar Product 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Product Name 4</h5>
+                                    <p class="card-text">$80</p>
+                                    <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center p-3">
+        <p class="mb-0">&copy; 2024 QSTORE. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Latest Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            let slideIndex = 0;
+
+            function showSlide(index) {
+                const slides = $('.slider img');
+                const totalSlides = slides.length;
+                slideIndex = (index + totalSlides) % totalSlides;
+                $('.slider').css('transform', `translateX(-${slideIndex * 100}%)`);
+            }
+
+            $('.slider-button.prev').click(function() {
+                showSlide(slideIndex - 1);
+            });
+
+            $('.slider-button.next').click(function() {
+                showSlide(slideIndex + 1);
+            });
+
+            // Auto-slide
+            setInterval(function() {
+                showSlide(slideIndex + 1);
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
